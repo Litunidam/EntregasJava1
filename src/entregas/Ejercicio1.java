@@ -5,7 +5,7 @@ import java.util.Arrays;
 
 public class Ejercicio1 {
 
-	public static void Switch(String[] diccionario, int i, int j) {
+	public static void Swap(String[] diccionario, int i, int j) {
 		String auxiliar;
 		auxiliar = diccionario[i];
 		diccionario[i] = diccionario[j];
@@ -36,7 +36,7 @@ public class Ejercicio1 {
 		for (int i = 0; i < n; i++) {
 			for (int j = i + 1; j < n; j++) {
 				if (diccionario[i].compareToIgnoreCase(diccionario[j]) > 0) {
-					Switch(diccionario, i, j);
+					Swap(diccionario, i, j);
 				}
 			}
 		}
