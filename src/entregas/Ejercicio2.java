@@ -6,7 +6,7 @@ public class Ejercicio2 {
 	// Mítica función para hacerlo más interactivo
 	private static void delaySegundo() {
 		try {
-			Thread.sleep(850);
+			Thread.sleep(50);
 		} catch (InterruptedException e) {
 		}
 	}
@@ -60,7 +60,7 @@ public class Ejercicio2 {
 		}
 		for (int i = 0; i < 3; i++) {
 			for (int j = 0; j < 4; j++) {
-				if()
+				
 			}
 		}
 		
