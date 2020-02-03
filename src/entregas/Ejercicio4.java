@@ -51,14 +51,6 @@ public class Ejercicio4 {
 		}
 		}while(salir==false);
 		
-		
-		
-		
-		
-		
-		
-		
-		
 	}
 
 	public static int opciones(Scanner s) {
