@@ -25,7 +25,7 @@ public class Ejercicio4 {
 				salir=s.nextBoolean();
 				break;
 			case 2:
-				mostrarJugadoresClub()
+				mostrarJugadoresClub(jugadoresClub);
 				System.out.println("¿Desea continuar? true/false");
 				salir=s.nextBoolean();
 				break;
@@ -77,6 +77,9 @@ public class Ejercicio4 {
 		}
 	}
 
+	public static void mostrarJugadoresClub(ArrayList<String>jugadoresClub) {
+		
+	}
 	public static void llenarJugadores(ArrayList<String>jugadoresLibres,ArrayList<Integer>precioJugadoresLibres) {
 		Random r = new Random();
 		
