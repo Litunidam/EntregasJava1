@@ -17,7 +17,7 @@ public class Ejercicio4 {
 		llenarJugadores(jugadoresLibres,precioJugadoresLibres);
 		
 		do{menu = opciones(s);
-		
+	
 		switch(menu) {
 			case 1:
 				mostrarJugadoresLibresYPrecios(contador, jugadoresLibres, precioJugadoresLibres);
@@ -82,7 +82,11 @@ public class Ejercicio4 {
 	}
 	public static void llenarJugadores(ArrayList<String>jugadoresLibres,ArrayList<Integer>precioJugadoresLibres) {
 		Random r = new Random();
-		
+		String[] nombres = {""};
+		for (int i=0;i<nombres.length;i++) {
+			jugadoresLibres.add(nombres[i]);
+			precioJugadoresLibres.add(r.nextInt(900000)+100001);
+		}
 		jugadoresLibres.add("Figo");
 		precioJugadoresLibres.add(r.nextInt(900000)+100001);
 		jugadoresLibres.add("Ronaldo");
