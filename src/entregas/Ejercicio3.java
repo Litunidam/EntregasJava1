@@ -4,54 +4,45 @@ import java.util.*;
 
 public class Ejercicio3 {
 
-	public static int  mostrarMenu(int menu) {
-		Scanner s = new Scanner(System.in);
-		System.out.println("1. Añadir un proceso a la cola.");
-		System.out.println("2. Permitir el acceso de un proceso.");
-		System.out.println("3. Salir.");
-		System.out.println("Elija opción");
-		menu=s.nextInt();
-		while(menu<1 || menu>3) {
-			System.out.println("Introduzca un número válido (entre el 1 y el 3)");
-			menu=s.nextInt();
-		}
-		
-		return menu;
-	}
-	public static void añadirProceso(ArrayList<String>procesos) {
-		
-		
-		
-	}
-	public static void accesoProceso(ArrayList<String>procesos) {
-		
-		
-		
-	}
 	public static void main(String[] args) {
-		ArrayList<String>procesos=new ArrayList<>();
-		
+
+		ArrayList<String> procesos = new ArrayList<>();
+		Scanner s = new Scanner(System.in);
 		int menu = 0;
-		
-		while(menu!=3) {
-			
-			mostrarMenu(menu);
-			switch(menu) {
+		int indice = -1;
+
+		while (menu != 3) {
+
+			System.out.println("1. Añadir un proceso a la cola.");
+			System.out.println("2. Permitir el acceso de un proceso.");
+			System.out.println("3. Salir.");
+			System.out.println("Elija opción");
+			menu = s.nextInt();
+			s.nextLine();
+			while (menu < 1 || menu > 3) {
+				System.out.println("Introduzca un número válido (entre el 1 y el 3)");
+				menu = s.nextInt();
+			}
+			switch (menu) {
 			case 1:
-				añadirProceso(procesos);
+				if (indice > 100) {
+					System.out.println("No se admiten más de 100 procesos en el sistema");
+					break;
+				}
+				System.out.println("Ha escogido 'Añadir un proceso', ahora introduzca el nombre del proceso:");
+				procesos.add(s.nextLine());
+				indice++;
 				break;
 			case 2:
-				accesoProceso(procesos);
+				System.out.println("Se acaba de procesar el proceso con nombre '" + procesos.get(indice) + "'");
 				break;
-				
+
 			case 3:
 				break;
 			}
-			
-			
-			
+
 		}
-		
-		
+
+		s.close();
 	}
 }
