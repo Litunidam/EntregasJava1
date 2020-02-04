@@ -1,12 +1,14 @@
 package entregas;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Scanner;
 
-public class Ejercicio3 {
+public class Ejercicio5 {
 
 	public static void main(String[] args) {
-
+		
 		ArrayList<String> procesos = new ArrayList<>();
+		ArrayList<Integer> duracionProcesos = new ArrayList<>();
 		Scanner s = new Scanner(System.in);
 		int menu = 0;
 		int indice = -1;
@@ -29,13 +31,13 @@ public class Ejercicio3 {
 					System.out.println("No se admiten más de 100 procesos en el sistema");
 					break;
 				}
-				if(procesos.isEmpty()) {
+				System.out.println("Ha escogido 'Añadir un proceso', ahora introduzca el nombre del proceso:");
+				procesos.add(s.nextLine());
+				if(procesos.isEmpty()) 
 					indice=0;
-				}else {
-					System.out.println("Ha escogido 'Añadir un proceso', ahora introduzca el nombre del proceso:");
-					procesos.add(s.nextLine());
-					indice++;
-				}
+				System.out.println("Introduzca la duración del proceso:");
+				duracionProcesos.add(s.nextInt());
+				s.nextLine();
 				break;
 			case 2:
 				if(indice!=-1) {
@@ -54,5 +56,11 @@ public class Ejercicio3 {
 		}
 
 		s.close();
+		
+		
+		
+		
+		
 	}
+	
 }
