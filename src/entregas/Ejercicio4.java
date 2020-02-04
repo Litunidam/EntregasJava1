@@ -3,56 +3,62 @@ import java.util.*;
 
 public class Ejercicio4 {
 	
-
+	static int dineroClub=10000000;
+	static ArrayList <String>jugadoresLibres = new ArrayList<>();
+	static ArrayList <Integer>precioJugadoresLibres = new ArrayList<>();
+	static ArrayList <String>jugadoresClub = new ArrayList<>();
+	static ArrayList <Integer>precioJugadoresClub = new ArrayList<>();
 	
 	public static void main(String[] args) {
 		Scanner s = new Scanner(System.in);
-		int contador=0,menu,dineroClub=10000000;
+		int contador=0,menu;
 		boolean salir=false;
-		ArrayList <String>jugadoresLibres = new ArrayList<>();
-		ArrayList <Integer>precioJugadoresLibres = new ArrayList<>();
-		ArrayList <String>jugadoresClub = new ArrayList<>();
-		ArrayList <Integer>precioJugadoresClub = new ArrayList<>();
-		
 		llenarJugadores(jugadoresLibres,precioJugadoresLibres);
-		
-		do{menu = opciones(s);
+		do{
+		menu = opciones(s);
 	
 		switch(menu) {
 			case 1:
-				mostrarJugadoresLibresYPrecios(contador, jugadoresLibres, precioJugadoresLibres);
+				mostrarJugadoresLibresYPrecios(contador);
 				System.out.println("¿Desea continuar? true/false");
 				salir=s.nextBoolean();
+				s.nextLine();
 				break;
 			case 2:
-				mostrarJugadoresClub(jugadoresClub);
+				mostrarJugadoresClub();
 				System.out.println("¿Desea continuar? true/false");
 				salir=s.nextBoolean();
+				s.nextLine();
 				break;
-			case 3:
-				
-				System.out.println("¿Desea continuar? true/false");
-				salir=s.nextBoolean();
-				break;
+			
 			case 4:
-				
+				comprarJugador(s);
 				System.out.println("¿Desea continuar? true/false");
 				salir=s.nextBoolean();
 				break;
 			case 5:	
-				
+				venderJugador(s);
 				System.out.println("¿Desea continuar? true/false");
 				salir=s.nextBoolean();
+				s.nextLine();
+				break;
+			case 3:
+				System.out.println("Este es el dinero que dispone el club: "+dineroClub);
+				System.out.println("¿Desea continuar? true/false");
+				salir=s.nextBoolean();
+				s.nextLine();				
 				break;
 			case 6:
+				s.nextLine();
 				break;
 				
 				
 		}
-		}while(salir==false);
+		}while(salir==true);
 		
 	}
 
+	//Este método muestra el menú
 	public static int opciones(Scanner s) {
 		int menu;
 		do{
@@ -64,77 +70,78 @@ public class Ejercicio4 {
 			System.out.println("6. Salir");
 			System.out.println("Seleccione opción:");
 			menu=s.nextInt();
+			s.nextLine();
 		}while(menu<1||menu>6 ||menu==6);
 		return menu;
 	}
-
-	public static void mostrarJugadoresLibresYPrecios(int contador, ArrayList<String> jugadoresLibres,ArrayList<Integer> precioJugadoresLibres) {
+	//Función que muestra los jugadores libres con sus precios
+	public static void mostrarJugadoresLibresYPrecios(int contador) {
 		System.out.println("Estos son los jugadores libres con sus precios:");
 		for (String x:jugadoresLibres ) {
 			System.out.print(x+": ");
-			System.out.println(precioJugadoresLibres.get(contador));
+			System.out.println(precioJugadoresLibres.get(contador)+"€");
 			contador++;
 		}
 	}
-
-	public static void mostrarJugadoresClub(ArrayList<String>jugadoresClub) {
+	//Función que muestra los jugadores que tiene el club
+	public static void mostrarJugadoresClub() {
+		int contador=0;
+		System.out.println("Estos son los jugadores de su club:");
+		for (String x:jugadoresClub ) {
+			System.out.print(x+": ");
+			System.out.println(precioJugadoresClub.get(contador));
+			contador++;
+		}		
+	}
+	//Fución comprar jugador
+	public static void comprarJugador(Scanner s){
+		String comprado;
+		System.out.println("Ha seleccionado: Comprar jugador.");
+		System.out.println("Introduzca el nombre del jugador que desea comprar:");
+		comprado=s.nextLine();
+		if (jugadoresLibres.contains(comprado)) {
+			if(precioJugadoresLibres.get(jugadoresLibres.indexOf(comprado))>dineroClub) {
+				System.out.println("El club no dispone del suficiente dinero para comprar ese jugador");
+			}else {
+				dineroClub=dineroClub-(precioJugadoresLibres.get(jugadoresLibres.indexOf(comprado)));
+				jugadoresClub.add(comprado);
+				precioJugadoresClub.add(precioJugadoresLibres.get(jugadoresLibres.indexOf(comprado)));
+				jugadoresLibres.remove(comprado);
+				precioJugadoresLibres.remove(jugadoresLibres.indexOf(comprado));
+			}
+			
+		}else {
+			System.out.println("No hay ningún jugador con ese nombre");
+		}
 		
 	}
+	//Funcion vender jugador
+	public static void venderJugador(Scanner s) {
+		String vender;
+		if(jugadoresClub.isEmpty()) {
+			System.out.println("El club no tiene ningún jugador que se pueda vender");
+		}else {
+			
+			System.out.println("Ha seleccionado: Vender jugador.");
+			System.out.println("Introduzca el nombre del jugador que desea vender:");
+			vender=s.nextLine();
+			if(jugadoresClub.contains(vender)) {
+				dineroClub+=precioJugadoresClub.get(jugadoresClub.indexOf(vender));
+				jugadoresLibres.add(vender);
+				precioJugadoresLibres.add(precioJugadoresClub.get(jugadoresClub.indexOf(vender)));
+				jugadoresClub.remove(vender);
+				precioJugadoresClub.remove(jugadoresClub.indexOf(vender)+1);
+			}else
+				System.out.println("El club no tiene a ese jugador.");
+		}
+	}	
+	//Función inicial para rellenar el array con los jugadores
 	public static void llenarJugadores(ArrayList<String>jugadoresLibres,ArrayList<Integer>precioJugadoresLibres) {
 		Random r = new Random();
-		String[] nombres = {""};
+		String[] nombres = {"Figo","Ronaldo","Fernando Torres","Rivaldo","Robiño","Ronaldiño","Guti","Raúl","Roberto Carlos","Makelele","Roben","Zidane","Míchel Salgado","Samuel Eto'o","Kaká","Bautista","Van Nistelrooy","Iker Casillas","Oliver Kahn","Gianluigi Buffon","Xavi Hernández","Carles Puyol","Thierry Henry","Fabio Cannavaro"};
 		for (int i=0;i<nombres.length;i++) {
 			jugadoresLibres.add(nombres[i]);
 			precioJugadoresLibres.add(r.nextInt(900000)+100001);
 		}
-		jugadoresLibres.add("Figo");
-		precioJugadoresLibres.add(r.nextInt(900000)+100001);
-		jugadoresLibres.add("Ronaldo");
-		precioJugadoresLibres.add(r.nextInt(900000)+100001);
-		jugadoresLibres.add("Fernando Torres");
-		precioJugadoresLibres.add(r.nextInt(900000)+100001);
-		jugadoresLibres.add("Rivaldo");
-		precioJugadoresLibres.add(r.nextInt(900000)+100001);
-		jugadoresLibres.add("Robiño");
-		precioJugadoresLibres.add(r.nextInt(900000)+100001);
-		jugadoresLibres.add("Ronaldiño");
-		precioJugadoresLibres.add(r.nextInt(900000)+100001);
-		jugadoresLibres.add("Guti");
-		precioJugadoresLibres.add(r.nextInt(900000)+100001);
-		jugadoresLibres.add("Raúl");
-		precioJugadoresLibres.add(r.nextInt(900000)+100001);
-		jugadoresLibres.add("Roberto Carlos");
-		precioJugadoresLibres.add(r.nextInt(900000)+100001);
-		jugadoresLibres.add("Makelele");
-		precioJugadoresLibres.add(r.nextInt(900000)+100001);
-		jugadoresLibres.add("Roben");
-		precioJugadoresLibres.add(r.nextInt(900000)+100001);
-		jugadoresLibres.add("Zidane");
-		precioJugadoresLibres.add(r.nextInt(900000)+100001);
-		jugadoresLibres.add("Míchel Salgado");
-		precioJugadoresLibres.add(r.nextInt(900000)+100001);
-		jugadoresLibres.add("Samuel Eto'o");
-		precioJugadoresLibres.add(r.nextInt(900000)+100001);
-		jugadoresLibres.add("Kaká");
-		precioJugadoresLibres.add(r.nextInt(900000)+100001);
-		jugadoresLibres.add("Bautista");
-		precioJugadoresLibres.add(r.nextInt(900000)+100001);
-		jugadoresLibres.add("Van Nistelrooy");
-		precioJugadoresLibres.add(r.nextInt(900000)+100001);
-		jugadoresLibres.add("Iker Casillas");
-		precioJugadoresLibres.add(r.nextInt(900000)+100001);
-		jugadoresLibres.add("Oliver Kahn");
-		precioJugadoresLibres.add(r.nextInt(900000)+100001);
-		jugadoresLibres.add("Gianluigi Buffon");
-		precioJugadoresLibres.add(r.nextInt(900000)+100001);
-		jugadoresLibres.add("Xavi Hernández");
-		precioJugadoresLibres.add(r.nextInt(900000)+100001);
-		jugadoresLibres.add("Carles Puyol");
-		precioJugadoresLibres.add(r.nextInt(900000)+100001);
-		jugadoresLibres.add("Thierry Henry");
-		precioJugadoresLibres.add(r.nextInt(900000)+100001);
-		jugadoresLibres.add("Fabio Cannavaro");
-		precioJugadoresLibres.add(r.nextInt(900000)+100001);
-		
 	}
 }

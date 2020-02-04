@@ -34,7 +34,13 @@ public class Ejercicio3 {
 				indice++;
 				break;
 			case 2:
-				System.out.println("Se acaba de procesar el proceso con nombre '" + procesos.get(indice) + "'");
+				if(indice!=-1) {
+					System.out.println("Se acaba de procesar el proceso con nombre '" + procesos.get(0) + "'");
+					System.out.println("");
+					procesos.remove(0);
+				}else
+					System.out.println("No hay ningún proceso en la cola");
+					System.out.println("");
 				break;
 
 			case 3:
