@@ -85,13 +85,17 @@ public class Ejercicio4 {
 	}
 	//Función que muestra los jugadores que tiene el club
 	public static void mostrarJugadoresClub() {
-		int contador=0;
-		System.out.println("Estos son los jugadores de su club:");
-		for (String x:jugadoresClub ) {
-			System.out.print(x+": ");
-			System.out.println(precioJugadoresClub.get(contador));
-			contador++;
-		}		
+		if (jugadoresClub.isEmpty()) {
+			System.out.println("Su club no tiene ningún jugador comprado");
+		}else {
+			int contador=0;
+			System.out.println("Estos son los jugadores de su club:");
+			for (String x:jugadoresClub ) {
+				System.out.print(x+": ");
+				System.out.println(precioJugadoresClub.get(contador));
+				contador++;
+			}		
+		}
 	}
 	//Fución comprar jugador
 	public static void comprarJugador(Scanner s){
@@ -106,8 +110,9 @@ public class Ejercicio4 {
 				dineroClub=dineroClub-(precioJugadoresLibres.get(jugadoresLibres.indexOf(comprado)));
 				jugadoresClub.add(comprado);
 				precioJugadoresClub.add(precioJugadoresLibres.get(jugadoresLibres.indexOf(comprado)));
-				jugadoresLibres.remove(comprado);
 				precioJugadoresLibres.remove(jugadoresLibres.indexOf(comprado));
+				jugadoresLibres.remove(comprado);
+				
 			}
 			
 		}else {
@@ -129,8 +134,9 @@ public class Ejercicio4 {
 				dineroClub+=precioJugadoresClub.get(jugadoresClub.indexOf(vender));
 				jugadoresLibres.add(vender);
 				precioJugadoresLibres.add(precioJugadoresClub.get(jugadoresClub.indexOf(vender)));
+				precioJugadoresClub.remove(jugadoresClub.indexOf(vender));
 				jugadoresClub.remove(vender);
-				precioJugadoresClub.remove(jugadoresClub.indexOf(vender)+1);
+				
 			}else
 				System.out.println("El club no tiene a ese jugador.");
 		}
