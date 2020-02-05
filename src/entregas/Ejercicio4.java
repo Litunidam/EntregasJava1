@@ -17,7 +17,7 @@ public class Ejercicio4 {
 		llenarJugadores(jugadoresLibres, precioJugadoresLibres);
 		do {
 			menu = opciones(s);
-
+		
 			switch (menu) {
 			case 1:
 				mostrarJugadoresLibresYPrecios(contador);
@@ -31,7 +31,12 @@ public class Ejercicio4 {
 				salir = s.nextBoolean();
 				s.nextLine();
 				break;
-
+			case 3:
+				System.out.println("Este es el dinero que dispone el club: " + dineroClub);
+				System.out.println("¿Desea continuar? true/false");
+				salir = s.nextBoolean();
+				s.nextLine();
+				break;
 			case 4:
 				comprarJugador(s);
 				System.out.println("¿Desea continuar? true/false");
@@ -43,14 +48,8 @@ public class Ejercicio4 {
 				salir = s.nextBoolean();
 				s.nextLine();
 				break;
-			case 3:
-				System.out.println("Este es el dinero que dispone el club: " + dineroClub);
-				System.out.println("¿Desea continuar? true/false");
-				salir = s.nextBoolean();
-				s.nextLine();
-				break;
 			case 6:
-				s.nextLine();
+				
 				break;
 
 			}
@@ -71,7 +70,7 @@ public class Ejercicio4 {
 			System.out.println("Seleccione opción:");
 			menu = s.nextInt();
 			s.nextLine();
-		} while (menu < 1 || menu > 6 || menu == 6);
+		} while (menu < 1 || menu > 6);
 		return menu;
 	}
 

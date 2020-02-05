@@ -19,8 +19,8 @@ public class Ejercicio1 {
 
 		System.out.println("Introduzca la dimensión del diccionario");
 		n = s.nextInt();
-		while (n < 0) {
-			System.out.println("La dimensión no puede ser negativa, introduzca un número negativo");
+		while (n < 1) {
+			System.out.println("La dimensión no puede ser negativa o 0, introduzca un número negativo");
 			n = s.nextInt();
 		}
 
