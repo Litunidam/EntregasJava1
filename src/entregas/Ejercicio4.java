@@ -17,7 +17,7 @@ public class Ejercicio4 {
 		llenarJugadores(jugadoresLibres, precioJugadoresLibres);
 		do {
 			menu = opciones(s);
-		
+
 			switch (menu) {
 			case 1:
 				mostrarJugadoresLibresYPrecios(contador);
@@ -49,7 +49,7 @@ public class Ejercicio4 {
 				s.nextLine();
 				break;
 			case 6:
-				
+
 				break;
 
 			}

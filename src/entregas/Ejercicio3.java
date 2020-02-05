@@ -25,26 +25,26 @@ public class Ejercicio3 {
 			}
 			switch (menu) {
 			case 1:
-				if (indice > 100) {
+				if (indice >= 100) {
 					System.out.println("No se admiten más de 100 procesos en el sistema");
 					break;
 				}
-				if(procesos.isEmpty()) 
-					indice=0;
-				
+				if (procesos.isEmpty())
+					indice = 0;
+
 				System.out.println("Ha escogido 'Añadir un proceso', ahora introduzca el nombre del proceso:");
 				procesos.add(s.nextLine());
 				indice++;
-			
+
 				break;
 			case 2:
-				if(indice!=-1) {
+				if (indice != -1) {
 					System.out.println("Se acaba de procesar el proceso con nombre '" + procesos.get(0) + "'");
 					System.out.println("");
 					procesos.remove(0);
-				}else
+				} else
 					System.out.println("No hay ningún proceso en la cola");
-					System.out.println("");
+				System.out.println("");
 				break;
 
 			case 3:

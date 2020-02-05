@@ -15,9 +15,9 @@ public class Ejercicio2 {
 		Random r = new Random();
 		int sueldos[][][] = new int[3][4][5];
 		int mediaSueldos[][] = new int[3][4];
-		int max=0;
-		int imax=0,jmax=0;
-		
+		int max = 0;
+		int imax = 0, jmax = 0;
+
 		// Inicializamos el array tridimensional para introducir los sueldos
 		for (int i = 0; i < 3; i++) {
 			for (int j = 0; j < 4; j++) {
@@ -61,17 +61,16 @@ public class Ejercicio2 {
 		}
 		for (int i = 0; i < 3; i++) {
 			for (int j = 0; j < 4; j++) {
-				if(mediaSueldos[i][j]>max) {
-					max=mediaSueldos[i][j];
-					imax=i;
-					jmax=j;
+				if (mediaSueldos[i][j] > max) {
+					max = mediaSueldos[i][j];
+					imax = i;
+					jmax = j;
 				}
 			}
 		}
-		
-		System.out.println("El empleado con el sueldo más alto es: "+max+" y sus índices son: ["+imax+","+jmax+"]");
-		
-		
-		
+
+		System.out.println(
+				"El empleado con el sueldo más alto es: " + max + " y sus índices son: [" + imax + "," + jmax + "]");
+
 	}
 }

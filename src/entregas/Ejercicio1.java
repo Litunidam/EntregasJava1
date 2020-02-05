@@ -11,7 +11,7 @@ public class Ejercicio1 {
 		diccionario[i] = diccionario[j];
 		diccionario[j] = auxiliar;
 	}
-	
+
 	public static void main(String[] args) {
 
 		Scanner s = new Scanner(System.in);
